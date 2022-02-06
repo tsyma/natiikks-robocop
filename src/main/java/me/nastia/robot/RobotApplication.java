@@ -14,6 +14,8 @@ public class RobotApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(RobotApplication.class, args);
-        new ScriptService(new ParseService(), new HashMap<String, Command>());
+        new ScriptService(new ParseService(), new HashMap<String, Command>()).execute("POSITION 1 3 EAST //sets the initial position for the robot as x, y.\n" +
+                "FORWARD 3 //lets the robot do 3 steps forward\n" +
+                "WAIT //lets the robot do nothing",new Position(0,0,Direction.NORTH));
     }
 }

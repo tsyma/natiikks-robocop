@@ -1,8 +1,10 @@
 package me.nastia.robot;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-@Value
+@AllArgsConstructor
+@Data
 public class Position {
     int x;
     int y;

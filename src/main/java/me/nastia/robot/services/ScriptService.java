@@ -5,7 +5,6 @@ import me.nastia.robot.commands.Command;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -14,22 +13,20 @@ import java.util.Map;
 @Service
 public class ScriptService {
     private final ParseService parseService;
-    private final Map<String, Command> map;
+    private final Map<String, Command> commandMap;
 
     @Autowired
     public ScriptService(ParseService parseService, Map<String, Command> map) {
         this.parseService = parseService;
-        this.map = map;
+        this.commandMap = map;
     }
-
-    Map<String, Command> commandMap;
 
 
     public Position execute(String script, Position position) {
         List<String> commands = parseService.parse(script);
         for (String command : commands) {
             String[] components = command.split("\\s+");
-            position = commandMap.get(components[0]).run(position, getParams(components));
+            position = commandMap.get(components[0].toLowerCase() + "command").run(position, getParams(components));
         }
         return position;
     }
@@ -38,10 +35,10 @@ public class ScriptService {
         return Arrays.asList(Arrays.copyOfRange(components, 1, components.length - 1));
     }
 
-    @PostConstruct
-    public void print() {
-        for (String string : map.keySet()) {
-            System.out.println(string + "+ " + map.get(string));
-        }
-    }
+//    @PostConstruct
+//    public void print() {
+//        for (String string : commandMap.keySet()) {
+//            System.out.println(string + "+ " + commandMap.get(string));
+//        }
+//    }
 }
