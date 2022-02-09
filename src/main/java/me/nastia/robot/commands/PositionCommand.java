@@ -1,7 +1,7 @@
 package me.nastia.robot.commands;
 
-import me.nastia.robot.Direction;
-import me.nastia.robot.Position;
+import me.nastia.robot.position.Direction;
+import me.nastia.robot.position.Position;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -15,8 +15,4 @@ public class PositionCommand implements Command {
         return new Position(Integer.parseInt(parameters.get(0)), Integer.parseInt(parameters.get(1)), Direction.valueOf(parameters.get(2)));
     }
 
-    @Override
-    public String getName() {
-        return "POSITION";
-    }
 }

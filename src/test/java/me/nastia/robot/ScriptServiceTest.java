@@ -1,6 +1,8 @@
 package me.nastia.robot;
 
 import me.nastia.robot.commands.Command;
+import me.nastia.robot.position.Direction;
+import me.nastia.robot.position.Position;
 import me.nastia.robot.services.ParseService;
 import me.nastia.robot.services.ScriptService;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,7 +13,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Map;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(SpringExtension.class)

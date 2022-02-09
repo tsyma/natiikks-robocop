@@ -1,4 +1,4 @@
-package me.nastia.robot;
+package me.nastia.robot.position;
 
 public enum Direction {
     NORTH,

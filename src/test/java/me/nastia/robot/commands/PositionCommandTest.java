@@ -1,7 +1,7 @@
 package me.nastia.robot.commands;
 
-import me.nastia.robot.Direction;
-import me.nastia.robot.Position;
+import me.nastia.robot.position.Direction;
+import me.nastia.robot.position.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,8 +23,4 @@ class PositionCommandTest {
         assertThat(result).isEqualTo(new Position(4, 3, Direction.WEST));
     }
 
-    @Test
-    void shouldReturnPOSITION(){
-        assertThat(positionCommand.getName()).isEqualTo("POSITION");
-    }
 }

@@ -1,7 +1,7 @@
 package me.nastia.robot.commands;
 
-import me.nastia.robot.Direction;
-import me.nastia.robot.Position;
+import me.nastia.robot.position.Direction;
+import me.nastia.robot.position.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,11 +22,6 @@ class ForwardCommandTest {
     void shouldReturnPositionObject() {
         Position result = forwardCommand.run(new Position(0, 0, Direction.NORTH), List.of("3"));
         assertEquals(Position.class, result.getClass());
-    }
-
-    @Test
-    void shouldReturnFORWARD() {
-        assertEquals("FORWARD", forwardCommand.getName());
     }
 
     @Test

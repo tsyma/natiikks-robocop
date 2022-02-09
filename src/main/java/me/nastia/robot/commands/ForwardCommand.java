@@ -1,6 +1,6 @@
 package me.nastia.robot.commands;
 
-import me.nastia.robot.Position;
+import me.nastia.robot.position.Position;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -11,25 +11,21 @@ public class ForwardCommand implements Command {
 
     @Override
     public Position run(Position position, List<String> parameters) {
-        switch(position.getDirection()){
+        switch (position.getDirection()) {
             case EAST -> {
-                position.setX(position.getX()+Integer.parseInt(parameters.get(0)));
+                position.setX(position.getX() + Integer.parseInt(parameters.get(0)));
             }
             case WEST -> {
-                position.setX(position.getX()-Integer.parseInt(parameters.get(0)));
+                position.setX(position.getX() - Integer.parseInt(parameters.get(0)));
             }
             case NORTH -> {
-                position.setY(position.getY()-Integer.parseInt(parameters.get(0)));
+                position.setY(position.getY() - Integer.parseInt(parameters.get(0)));
             }
             case SOUTH -> {
-                position.setY(position.getY()+Integer.parseInt(parameters.get(0)));
+                position.setY(position.getY() + Integer.parseInt(parameters.get(0)));
             }
         }
         return position;
     }
 
-    @Override
-    public String getName() {
-        return "FORWARD";
-    }
 }

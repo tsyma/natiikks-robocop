@@ -1,7 +1,7 @@
 package me.nastia.robot.services;
 
-import me.nastia.robot.Position;
 import me.nastia.robot.commands.Command;
+import me.nastia.robot.position.Position;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,32 +13,24 @@ import java.util.Map;
 @Service
 public class ScriptService {
     private final ParseService parseService;
-    private final Map<String, Command> commandMap;
+    private final Map<String, Command> map;
 
-    @Autowired
-    public ScriptService(ParseService parseService, Map<String, Command> map) {
+    public ScriptService(ParseService parseService, @Autowired Map<String, Command> map) {
         this.parseService = parseService;
-        this.commandMap = map;
+        this.map = map;
     }
-
 
     public Position execute(String script, Position position) {
         List<String> commands = parseService.parse(script);
         for (String command : commands) {
             String[] components = command.split("\\s+");
-            position = commandMap.get(components[0].toLowerCase() + "command").run(position, getParams(components));
+            position = map.get(components[0].toLowerCase() + "Command").run(position, getParams(components));
         }
         return position;
     }
 
     private List<String> getParams(String[] components) {
-        return Arrays.asList(Arrays.copyOfRange(components, 1, components.length - 1));
+        return Arrays.asList(Arrays.copyOfRange(components, 1, components.length));
     }
 
-//    @PostConstruct
-//    public void print() {
-//        for (String string : commandMap.keySet()) {
-//            System.out.println(string + "+ " + commandMap.get(string));
-//        }
-//    }
 }
